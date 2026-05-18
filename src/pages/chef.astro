@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const timeline = [
+  { year: "2005", detail: "Began formal sushi apprenticeship in Tokyo under a third-generation itamae." },
+  { year: "2010", detail: "Relocated to New York, worked at two of the city's most respected omakase counters." },
+  { year: "2015", detail: "Led the kitchen at a Michelin-recognized Japanese restaurant for five years." },
+  { year: "2020", detail: "Launched Sushi BBY as a pop-up series, quickly developing a dedicated following." },
+  { year: "2022", detail: "Opened Sushi BBY as a permanent restaurant." },
+];
+---
+
+<Layout title="Chef Carmen" description="Meet Chef Carmen, the chef behind Sushi BBY.">
+  <!-- Hero -->
+  <section class="chef-hero">
+    <div class="chef-hero-media">
+      <!-- Replace with: <img src="/images/chef-full.jpg" alt="Chef Carmen" /> -->
+      <div class="media-placeholder" aria-hidden="true">Chef Portrait</div>
+    </div>
+    <div class="chef-hero-text">
+      <p class="chef-label">Executive Chef & Owner</p>
+      <h1>Chef Carmen</h1>
+      <p>
+        Trained in Tokyo. Refined in New York. Rooted here.
+      </p>
+    </div>
+  </section>
+
+  <!-- Biography -->
+  <section class="chef-bio">
+    <div class="chef-bio-inner">
+      <div class="chef-bio-text">
+        <h2>In Her Own Words</h2>
+        <p>
+          I started cooking sushi because I wanted to understand restraint. In
+          most kitchens you're encouraged to add — more sauce, more garnish, more
+          technique. Sushi taught me the opposite. A great piece of nigiri is
+          one where nothing is in the way.
+        </p>
+        <p>
+          My training in Tokyo was strict in the best way. I spent the first two
+          years doing almost nothing but rice. By the time I was allowed to touch
+          fish, I understood why. The rice is everything. If the rice is wrong,
+          it doesn't matter how good the fish is.
+        </p>
+        <p>
+          When I moved to New York, I worked under chefs who pushed me to think
+          about sourcing the way farmers think about soil. Where the fish comes
+          from, how it was handled, how long it traveled — all of that ends up
+          in the flavor. It changed how I buy and how I cook.
+        </p>
+        <p>
+          Sushi BBY is the restaurant I wanted to eat at but couldn't find. A
+          serious omakase counter that doesn't feel intimidating. Fish I'd be
+          proud to serve to my mentors. And a room where people actually enjoy
+          themselves.
+        </p>
+      </div>
+      <div class="chef-bio-media">
+        <!-- Replace with: <img src="/images/chef-kitchen.jpg" alt="Chef Carmen in the kitchen" /> -->
+        <div class="media-placeholder" aria-hidden="true">Kitchen Photo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="chef-philosophy">
+    <blockquote>
+      "The best sushi is the kind where you taste the fish, not the chef."
+      <cite>— Chef Carmen</cite>
+    </blockquote>
+  </section>
+
+  <!-- Timeline -->
+  <section class="chef-timeline">
+    <div class="chef-timeline-inner">
+      <h2>Background</h2>
+      <ol class="timeline-list">
+        {timeline.map((item) => (
+          <li class="timeline-item">
+            <span class="timeline-year">{item.year}</span>
+            <p>{item.detail}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</Layout>

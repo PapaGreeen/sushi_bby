@@ -1,0 +1,18 @@
+---
+import { siteConfig } from '../config';
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  <a href="/" class="brand">{siteConfig.name}</a>
+  <ul>
+    {siteConfig.nav.map((link) => (
+      <li>
+        <a href={link.href} class={currentPath === link.href ? 'active' : ''}>
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

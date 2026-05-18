@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const diningTypes = [
+  {
+    id: "regular",
+    label: "Regular Seating",
+    description: "Walk the menu at your own pace. Order à la carte from the full menu including nigiri, rolls, and starters. No minimum spend.",
+    note: "No deposit required.",
+  },
+  {
+    id: "omakase",
+    label: "Omakase",
+    description: "Trust the chef. A 8 or 12-course progression of nigiri and small plates built around the day's catch. Menu changes nightly.",
+    note: "Credit card required to hold. 24-hour cancellation policy.",
+  },
+  {
+    id: "private",
+    label: "Private Event",
+    description: "Intimate buyouts and group dinners with a custom menu. Suitable for 6–40 guests. We'll follow up to discuss details.",
+    note: "Deposit required to confirm. Inquire at least 2 weeks in advance.",
+  },
+];
+---
+
+<Layout title="Reservations" description="Reserve a table, book an omakase, or plan a private event at Sushi BBY.">
+  <section class="page-header">
+    <h1>Reservations</h1>
+    <p>
+      Book a regular table, secure an omakase seat, or start planning a
+      private event. Fill out the form below and we'll confirm within
+      one business day.
+    </p>
+  </section>
+
+  <!-- Dining Type Cards -->
+  <section class="reservations-types">
+    <div class="reservations-types-inner">
+      {diningTypes.map((type) => (
+        <div class="res-type-card">
+          <h3>{type.label}</h3>
+          <p>{type.description}</p>
+          <p class="res-type-note">{type.note}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Reservation Form -->
+  <section class="reservations-form-section">
+    <div class="reservations-form-inner">
+      <div class="reservations-form-wrapper">
+        <h2>Request a Reservation</h2>
+        <!--
+          Wire up to your booking handler (OpenTable embed, Resy, Tock,
+          Formspree, or your own API).
+          e.g. <form action="/api/reservations" method="POST">
+        -->
+        <form class="reservations-form" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first_name" placeholder="First name" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last_name" placeholder="Last name" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-email">Email</label>
+              <input type="email" id="res-email" name="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="res-phone">Phone</label>
+              <input type="tel" id="res-phone" name="phone" placeholder="(555) 000-0000" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-date">Preferred Date</label>
+              <input type="date" id="res-date" name="date" required />
+            </div>
+            <div class="form-group">
+              <label for="res-time">Preferred Time</label>
+              <select id="res-time" name="time" required>
+                <option value="" disabled selected>Select a time</option>
+                <option>5:00 PM</option>
+                <option>5:30 PM</option>
+                <option>6:00 PM</option>
+                <option>6:30 PM</option>
+                <option>7:00 PM</option>
+                <option>7:30 PM</option>
+                <option>8:00 PM</option>
+                <option>8:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-party">Party Size</label>
+              <select id="res-party" name="party_size" required>
+                <option value="" disabled selected>Number of guests</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="res-type">Dining Type</label>
+              <select id="res-type" name="dining_type" required>
+                <option value="" disabled selected>Select type</option>
+                <option>Regular Seating</option>
+                <option>Omakase (8-Course)</option>
+                <option>Omakase (12-Course)</option>
+                <option>Private Event</option>
+                <option>Tuna Carving Experience</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="res-requests">Special Requests or Notes</label>
+            <textarea id="res-requests" name="requests" rows="4" placeholder="Allergies, dietary restrictions, special occasions, or anything else we should know."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Request Reservation</button>
+        </form>
+      </div>
+
+      <!-- Policies -->
+      <div class="reservations-policies">
+        <h2>Good to Know</h2>
+        <ul class="policy-list">
+          <li>
+            <strong>Confirmations</strong>
+            <p>We'll confirm your reservation by email within one business day. Your table is not held until you receive a confirmation.</p>
+          </li>
+          <li>
+            <strong>Cancellations</strong>
+            <p>We ask for 24 hours notice for regular seatings and 48 hours for omakase. Late cancellations for omakase may incur a fee.</p>
+          </li>
+          <li>
+            <strong>Walk-ins</strong>
+            <p>Bar seating is first-come, first-served. We always keep a few spots open for walk-ins when availability allows.</p>
+          </li>
+          <li>
+            <strong>Large Groups</strong>
+            <p>For parties of 7 or more, please reach out directly so we can accommodate you properly.</p>
+          </li>
+          <li>
+            <strong>Private Events</strong>
+            <p>Inquiries typically require 2 weeks minimum lead time. We'll follow up to discuss your event in detail.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

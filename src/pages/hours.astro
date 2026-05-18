@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config';
+---
+
+<Layout title="Hours & Location" description="Find Sushi BBY — address, hours, and how to get here.">
+  <section class="page-header">
+    <h1>Hours & Location</h1>
+    <p>
+      We're open most days of the week. Walk-ins welcome based on availability.
+      Reservations recommended for omakase and weekend evenings.
+    </p>
+  </section>
+
+  <section class="hours-location">
+    <!-- Map -->
+    <div class="hours-map">
+      <!--
+        Replace with a Google Maps embed:
+        <iframe src="https://maps.google.com/..." ...></iframe>
+      -->
+      <div class="map-placeholder" aria-label="Map of Sushi BBY location">Map Placeholder</div>
+    </div>
+
+    <!-- Info -->
+    <div class="hours-info">
+      <div class="info-block">
+        <h2>Address</h2>
+        <address>
+          {siteConfig.address}<br />
+          <!-- Add neighborhood or cross-street if helpful -->
+        </address>
+      </div>
+
+      <div class="info-block">
+        <h2>Hours</h2>
+        <ul class="hours-list">
+          {siteConfig.hours.map((entry) => (
+            <li>
+              <span>{entry.day}</span>
+              <span>{entry.time}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="hours-note">
+          Kitchen closes 30 minutes before listed closing time. Hours may vary
+          on holidays — follow us on social or call ahead to confirm.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <h2>Contact</h2>
+        <p><a href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a></p>
+        <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+      </div>
+
+      <div class="info-block">
+        <h2>Getting Here</h2>
+        <p>
+          <strong>Parking:</strong> Street parking available on Lorem and Ipsum
+          Streets. Paid lot one block north on Dolor Ave.
+        </p>
+        <p>
+          <strong>Transit:</strong> Nearest stop is Lorem Station, two blocks
+          west. Bus lines 00 and 00X stop directly in front.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

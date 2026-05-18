@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// span: "wide" = 2 cols, "tall" = 2 rows, "feature" = 2x2, default = 1x1
+const photos = [
+  { alt: "Omakase course — bluefin nigiri",     span: "feature" },
+  { alt: "Tuna carving tableside",               span: "wide"    },
+  { alt: "Salmon nigiri close-up",               span: ""        },
+  { alt: "Private dining setup",                 span: ""        },
+  { alt: "Chef Carmen at the counter",           span: "tall"    },
+  { alt: "House sake selection",                 span: ""        },
+  { alt: "Spicy tuna crispy rice",               span: ""        },
+  { alt: "Whole bluefin on ice",                 span: "wide"    },
+  { alt: "Uni nigiri",                           span: ""        },
+  { alt: "Interior — bar seating",               span: ""        },
+  { alt: "Gyoza with ponzu",                     span: ""        },
+  { alt: "Omakase platter",                      span: "wide"    },
+  { alt: "Chef's hands — knife work",            span: ""        },
+  { alt: "Dining room — evening service",        span: ""        },
+];
+---
+
+<Layout title="Gallery" description="Photos from Sushi BBY — food, events, and the restaurant.">
+  <section class="page-header">
+    <h1>Gallery</h1>
+    <p>
+      A look inside the restaurant — our food, our events, and the people
+      behind them.
+    </p>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery-grid">
+      {photos.map((photo) => (
+        <div class={`gallery-item${photo.span ? ` gallery-item--${photo.span}` : ''}`}>
+          <!--
+            Replace with: <img src="/images/gallery/filename.jpg" alt={photo.alt} />
+            Recommended size: 1200×1200 for square, 2400×1200 for wide, 1200×2400 for tall
+          -->
+          <div class="gallery-placeholder" aria-label={photo.alt}>
+            <span>{photo.alt}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
