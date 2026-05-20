@@ -3,8 +3,7 @@ export const siteConfig = {
   tagline: "HOMAKASE ✨ TUNA CARVINGS ✨ PRIVATE EVENTS",
   nav: [
     { label: "Experience", href: "/" },
-    { label: "Menu", href: "/menu" },
-    { label: "Chef Carmen", href: "/chef" },
+    { label: "Chef", href: "/chef" },
     { label: "Gallery", href: "/gallery" },
     { label: "Hours & Location", href: "/hours" },
     { label: "Reservations", href: "/reservations" },

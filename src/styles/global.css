@@ -1,7 +1,7 @@
 /* ── Custom Properties ── */
 :root {
-  --color-text:       #1a1a1a;
-  --color-bg:         #fff;
+  --color-text:       #0f0f0f;
+  --color-bg:         #f5f0e8;
   --color-bg-subtle:  #f3f4f6;
   --color-bg-hero:    #f9fafb;
   --color-border:     #e5e7eb;
@@ -92,7 +92,7 @@ address { font-style: normal; }
 
 /* ── Nav ── */
 nav {
-  background: var(--color-text);
+  background: transparent;
   color: var(--color-bg);
   padding: 0 var(--pad-x);
   display: flex;
@@ -103,6 +103,14 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
+
+  & .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & .nav-logo { height: 36px; width: auto; filter: brightness(0) invert(1); }
 
   & .brand {
     color: var(--color-bg);
@@ -208,6 +216,11 @@ footer {
 
   & h1 { font-size: 3rem; }
 
+  & hero-content {
+    Display:none;
+
+  }
+
   & .tagline {
     margin-top: 1rem;
     font-size: 1.15rem;
@@ -281,38 +294,6 @@ footer {
 
   & p   { margin-top: 0.75rem; color: var(--color-muted); max-width: 480px; margin-inline: auto; }
   & .btn { margin-top: 1.5rem; }
-}
-
-/* ── Menu ── */
-.menu {
-  max-width: 800px;
-  margin-inline: auto;
-  padding: 3rem var(--pad-x);
-
-  & .menu-category {
-    margin-bottom: 3rem;
-
-    & h2 {
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--color-text);
-      margin-bottom: 1rem;
-    }
-
-    & .menu-items { display: flex; flex-direction: column; }
-
-    & .menu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--color-border);
-
-      & h3 { font-size: 1rem; margin-bottom: 0.2rem; }
-      & p  { font-size: 0.875rem; color: var(--color-subtle); margin: 0; }
-      & .menu-item-price { font-weight: 700; white-space: nowrap; flex-shrink: 0; }
-    }
-  }
 }
 
 /* ── About ── */
@@ -534,15 +515,21 @@ footer {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  max-width: var(--width-max);
-  margin-inline: auto;
-  padding: var(--pad-section) var(--pad-x);
+  min-height: 100vh;
+  margin-top: -60px;
+  padding: calc(60px + var(--pad-section)) var(--pad-x) var(--pad-section);
+  background: #0f0f0f;
+  border-bottom: none;
+  text-align: left;
 
-  & .hero-eyebrow { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-subtle); margin-bottom: 0.75rem; }
-  & h1 { font-size: 3rem; margin-bottom: 1rem; }
-  & .tagline { color: var(--color-muted); font-size: 1.05rem; margin-bottom: 2rem; }
+  & .hero-content { text-align: center; }
+  & .hero-eyebrow { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.75rem; }
+  & h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--color-bg); }
+  & .tagline { color: #d1d5db; font-size: 1.05rem; margin-bottom: 2rem; }
   & .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
   & .hero-media .media-placeholder { aspect-ratio: 4 / 3; }
+  & .btn-primary { background: var(--color-bg); color: var(--color-text); border-color: var(--color-bg); }
+  & .btn-secondary { color: var(--color-bg); border-color: var(--color-bg); }
 }
 
 .experience-concept {

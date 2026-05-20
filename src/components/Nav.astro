@@ -5,7 +5,12 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav>
-  <a href="/" class="brand">{siteConfig.name}</a>
+  <div class="brand-group">
+    <a href="/">
+    <img class="nav-logo" src="/favicon.svg" alt="" width="100" height="100" />
+    </a>
+    <a href="/" class="brand">{siteConfig.name}</a>
+  </div>
   <ul>
     {siteConfig.nav.map((link) => (
       <li>
