@@ -3,5 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://papagreeen.github.io'
+    site: 'https://<your-github-username>.github.io',
+    base: '/sushi-bby',
 });
