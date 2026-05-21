@@ -54,4 +54,9 @@ const currentPath = Astro.url.pathname;
       hamburger.setAttribute('aria-expanded', 'false');
     }
   });
+
+  const nav = document.querySelector('nav') as HTMLElement;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>

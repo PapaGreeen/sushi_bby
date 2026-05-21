@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "SUSHI BBY",
   tagline: "HOMAKASE ✨ TUNA CARVINGS ✨ PRIVATE EVENTS",
+  instagram: "https://instagram.com/sushibby",
   nav: [
     { label: "Experience", href: "/" },
     { label: "Chef", href: "/chef" },

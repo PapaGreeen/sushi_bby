@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import restaurantImg from '../assets/restaurant.jpeg';
+import restaurantImgMobile from '../assets/restaurant.png';
 
 // span: "wide" = 2 cols, "tall" = 2 rows, "feature" = 2×2, default = 1×1
 const shots = [
@@ -27,11 +28,17 @@ const shots = [
         built entirely around the day's catch. No menu. Trust the chef.
       </p>
       <div class="hero-actions">
-        <a href="/reservations" class="btn btn-primary">Reservations</a>
+        <div class="btn">
+          <a href="/reservations" class="btn-primary">Reservations</a>
+          <span></span>
+        </div>
       </div>
     </div>
     <div class="hero-media">
-      <img src={restaurantImg.src} alt="Sushi BBY restaurant" />
+      <picture>
+        <source media="(max-width: 1024px)" srcset={restaurantImgMobile.src} />
+        <img src={restaurantImg.src} alt="Sushi BBY restaurant" />
+      </picture>
     </div>
   </section>
 
