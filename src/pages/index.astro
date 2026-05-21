@@ -1,110 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import restaurantImg from '../assets/restaurant.jpeg';
+
+// span: "wide" = 2 cols, "tall" = 2 rows, "feature" = 2×2, default = 1×1
+const shots = [
+  { alt: "Omakase opening course",      span: "feature" },
+  { alt: "Bluefin nigiri close-up",     span: "wide"    },
+  { alt: "Chef at the counter",         span: ""        },
+  { alt: "Salmon nigiri",               span: ""        },
+  { alt: "Interior — bar seating",      span: "tall"    },
+  { alt: "Uni nigiri",                  span: ""        },
+  { alt: "Spicy tuna crispy rice",      span: ""        },
+  { alt: "Whole tuna on ice",           span: "wide"    },
+  { alt: "House sake selection",        span: ""        },
+  { alt: "Evening service",             span: ""        },
+];
 ---
 
 <Layout description="Omakase, tuna carvings, and private events at Sushi BBY.">
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <!-- <p class="hero-eyebrow">Sushi BBY</p> -->
       <h1>A Chef-Driven<br />Experience</h1>
       <p class="tagline">
-        Omakase (noun, Japanese: お任せ) directly translates to "I'll leave it up to you" or "chef's choice."
-        In a restaurant setting, it refers to a dining experience where the customer foregoes the menu, 
-        entrusting the chef to curate a custom, multi-course meal using the freshest, seasonal ingredients.
+        Omakase (お任せ) — "I'll leave it up to you." A multi-course progression
+        built entirely around the day's catch. No menu. Trust the chef.
       </p>
+      <div class="hero-actions">
+        <a href="/reservations" class="btn btn-primary">Reservations</a>
+      </div>
     </div>
     <div class="hero-media">
-      <img src={restaurantImg.src} alt="restaurant image" />
+      <img src={restaurantImg.src} alt="Sushi BBY restaurant" />
     </div>
   </section>
 
-  <!-- The Concept -->
-  <section class="experience-concept">
-    <div class="concept-text">
-      <h2>The Experience</h2>
-      <p>
-        Every seat at Sushi BBY is an opportunity to eat well. Whether you're
-        dropping in for a couple of rolls at the bar or sitting down for a
-        full omakase, the same care goes into every plate.
-      </p>
-      <p>
-        We don't run a frozen fish program. Everything is sourced daily, prepared
-        to order, and served the way it was meant to be eaten — simply, and at
-        the right temperature.
-      </p>
-    </div>
-    <div class="concept-media">
-      <!-- Replace with image: <img src="/images/concept.jpg" alt="Chef at work" /> -->
-      <div class="media-placeholder" aria-hidden="true">Image Placeholder</div>
-    </div>
-  </section>
-
-  <!-- Signature Offerings -->
-  <section class="experience-offerings">
-    <h2>What We Offer</h2>
-    <div class="offerings-grid">
-      <article class="offering-card">
-        <div class="offering-media">
-          <!-- <img src="/images/omakase.jpg" alt="Omakase course" /> -->
-          <div class="media-placeholder" aria-hidden="true">Image Placeholder</div>
+  <!-- Bento Gallery -->
+  <section class="gallery home-gallery">
+    <div class="gallery-grid">
+      {shots.map((shot) => (
+        <div class={`gallery-item${shot.span ? ` gallery-item--${shot.span}` : ''}`}>
+          <!--
+            Replace with: <img src="/images/home/filename.jpg" alt={shot.alt} />
+            Sizes: 1200×1200 square · 2400×1200 wide · 1200×2400 tall · 2400×2400 feature
+          -->
+          <div class="gallery-placeholder" aria-label={shot.alt}>
+            <span>{shot.alt}</span>
+          </div>
         </div>
-        <div class="offering-body">
-          <h3>Omakase</h3>
-          <p>
-            Trust the chef. Our omakase courses run 8–12 pieces and change
-            nightly based on the catch. Reservations required.
-          </p>
-          <a href="/reservations" class="btn btn-primary">Book Omakase</a>
-        </div>
-      </article>
-      <article class="offering-card">
-        <div class="offering-media">
-          <!-- <img src="/images/tuna.jpg" alt="Whole tuna carving" /> -->
-          <div class="media-placeholder" aria-hidden="true">Image Placeholder</div>
-        </div>
-        <div class="offering-body">
-          <h3>Tuna Carving</h3>
-          <p>
-            A whole bluefin broken down tableside and served as nigiri and
-            sashimi for the group. Minimum 4 guests. Inquire for dates.
-          </p>
-          <a href="/reservations" class="btn btn-primary">Inquire</a>
-        </div>
-      </article>
-      <article class="offering-card">
-        <div class="offering-media">
-          <!-- <img src="/images/private.jpg" alt="Private dining room" /> -->
-          <div class="media-placeholder" aria-hidden="true">Image Placeholder</div>
-        </div>
-        <div class="offering-body">
-          <h3>Private Events</h3>
-          <p>
-            Intimate dinners and full venue buyouts with a custom menu
-            consultation. Suitable for groups of 6 to 40 guests.
-          </p>
-          <a href="/reservations" class="btn btn-primary">Plan an Event</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Chef Callout -->
-  <section class="experience-chef">
-    <div class="chef-callout-media">
-      <!-- <img src="/images/chef-portrait.jpg" alt="Chef Carmen" /> -->
-      <div class="media-placeholder" aria-hidden="true">Chef Portrait</div>
-    </div>
-    <div class="chef-callout-text">
-      <p class="callout-label">Meet the Chef</p>
-      <h2>Chef Carmen</h2>
-      <p>
-        With over 15 years of training in Tokyo and New York, Chef Carmen leads
-        the kitchen with a focus on seasonal sourcing and traditional technique.
-        Every menu is a direct reflection of what's at the market that morning.
-      </p>
-      <a href="/chef" class="btn btn-primary">Chef's Story</a>
+      ))}
     </div>
   </section>
 </Layout>
