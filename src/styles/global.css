@@ -225,7 +225,7 @@ nav {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1060px) {
   nav .nav-hamburger { display: flex; }
 
   nav .nav-links {
@@ -290,6 +290,12 @@ footer {
     color: var(--color-text);
     text-align: center;
     white-space: nowrap;
+
+    & .footer-tm {
+      letter-spacing: 0;
+      font-size: 0.75em;
+      vertical-align: super;
+    }
   }
 
   & .footer-links {
@@ -714,22 +720,37 @@ footer {
 .chef-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 480px;
-
-  & .chef-hero-media {
-    & .media-placeholder { height: 100%; min-height: 480px; border-radius: 0; aspect-ratio: unset; }
-  }
+  gap: 4rem;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: -60px;
+  padding: calc(60px + var(--pad-section)) var(--pad-x) var(--pad-section);
 
   & .chef-hero-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 3rem var(--pad-x);
-    background: var(--color-bg-subtle);
+    & .chef-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-muted);
+      margin-bottom: 0.75rem;
+    }
+    & h1 { font-size: 3rem; margin-bottom: 1rem; }
+    & .chef-intro { color: var(--color-muted); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7; }
+    & .chef-hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  }
 
-    & .chef-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-subtle); margin-bottom: 0.5rem; }
-    & h1 { margin-bottom: 0.75rem; }
-    & p  { color: var(--color-muted); font-size: 1.05rem; }
+  & .chef-hero-media {
+    & img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+    & .media-placeholder {
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-md);
+    }
   }
 }
 
@@ -963,18 +984,34 @@ footer {
 
 /* ── Responsive: Tablet ── */
 @media (max-width: 1024px) {
-  .hero {
+  .hero,
+  .chef-hero {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     min-height: unset;
     text-align: center;
   }
-  .hero .hero-actions { justify-content: center; }
+  .hero .hero-actions,
+  .chef-hero .chef-hero-actions { justify-content: center; }
 
   .experience-offerings .offerings-grid { grid-template-columns: repeat(2, 1fr); }
 
   .chef-bio .chef-bio-inner,
   .featured { grid-template-columns: 1fr; gap: 2rem; }
+
+  .chef-bio { text-align: center; }
+  .chef-bio .chef-bio-media { display: flex; justify-content: center; }
+  .chef-bio .chef-bio-media .media-placeholder { max-width: 480px; }
+
+  .chef-hero .chef-hero-text,
+  .hero .hero-content { max-width: 600px; margin-inline: auto; }
+
+  .chef-hero .chef-hero-media {
+    display: flex;
+    justify-content: center;
+  }
+  .chef-hero .chef-hero-media img,
+  .chef-hero .chef-hero-media .media-placeholder { max-width: 480px; width: 100%; }
 
   .events-private .events-private-inner { gap: 2.5rem; }
 
@@ -1005,8 +1042,7 @@ footer {
   .experience-offerings .offerings-grid,
   .reservations-types .reservations-types-inner { grid-template-columns: 1fr; }
 
-  .chef-hero { display: flex; flex-direction: column; }
-  .chef-hero .chef-hero-media .media-placeholder { min-height: 240px; }
+  .chef-hero .chef-hero-media .media-placeholder { min-height: 240px; aspect-ratio: 16/9; }
 
   .gallery .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.35rem; }
   .gallery .gallery-item--feature,
