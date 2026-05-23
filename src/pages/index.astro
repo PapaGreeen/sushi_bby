@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import restaurantImg from '../assets/restaurant.jpeg';
-import restaurantImgMobile from '../assets/restaurant.png';
+import barCenteredAiImage from '../assets/bar-centered-ai.png';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-// span: "wide" = 2 cols, "tall" = 2 rows, "feature" = 2×2, default = 1×1
+const slides = [
+  { src: barCenteredAiImage.src, alt: "Sushi BBY bar" },
+];
+
 const shots = [
   { alt: "Omakase opening course",      span: "feature" },
   { alt: "Bluefin nigiri close-up",     span: "wide"    },
@@ -23,6 +25,14 @@ const shots = [
 <Layout description="Omakase, tuna carvings, and private events at Sushi BBY.">
   <!-- Hero -->
   <section class="hero">
+    {slides.map((slide, i) => (
+      <div class={`hero-slide${i === 0 ? ' active' : ''}`}>
+        <img src={slide.src} alt={slide.alt} />
+      </div>
+    ))}
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
     <div class="hero-content">
       <h1>A Chef-Driven<br />Experience</h1>
       <p class="tagline">
@@ -36,11 +46,28 @@ const shots = [
         </div>
       </div>
     </div>
-    <div class="hero-media">
-      <picture>
-        <source media="(max-width: 1024px)" srcset={restaurantImgMobile.src} />
-        <img src={restaurantImg.src} alt="Sushi BBY restaurant" />
-      </picture>
+
+    <div class="hero-controls">
+      <button class="hero-pause" aria-label="Pause slideshow" id="hero-pause">
+        <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <rect x="3" y="2" width="3.5" height="12" rx="1"/>
+          <rect x="9.5" y="2" width="3.5" height="12" rx="1"/>
+        </svg>
+        <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <polygon points="3,1 13,8 3,15"/>
+        </svg>
+      </button>
+      <div class="hero-dots" role="tablist" aria-label="Slideshow navigation">
+        {slides.map((_, i) => (
+          <button
+            class={`hero-dot${i === 0 ? ' active' : ''}`}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`Slide ${i + 1}`}
+            data-slide={String(i)}
+          ></button>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -49,10 +76,6 @@ const shots = [
     <div class="gallery-grid">
       {shots.map((shot) => (
         <div class={`gallery-item${shot.span ? ` gallery-item--${shot.span}` : ''}`}>
-          <!--
-            Replace with: <img src="/images/home/filename.jpg" alt={shot.alt} />
-            Sizes: 1200×1200 square · 2400×1200 wide · 1200×2400 tall · 2400×2400 feature
-          -->
           <div class="gallery-placeholder" aria-label={shot.alt}>
             <span>{shot.alt}</span>
           </div>
@@ -61,3 +84,36 @@ const shots = [
     </div>
   </section>
 </Layout>
+
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.hero-slide'));
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.hero-dot'));
+  const pauseBtn = document.getElementById('hero-pause') as HTMLButtonElement | null;
+
+  let current = 0;
+  let paused = false;
+
+  function goTo(index: number) {
+    slides[current].classList.remove('active');
+    dots[current]?.classList.remove('active');
+    dots[current]?.setAttribute('aria-selected', 'false');
+    current = ((index % slides.length) + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current]?.classList.add('active');
+    dots[current]?.setAttribute('aria-selected', 'true');
+  }
+
+  if (slides.length > 1) {
+    setInterval(() => { if (!paused) goTo(current + 1); }, 6000);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goTo(i));
+  });
+
+  pauseBtn?.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.classList.toggle('is-paused', paused);
+    pauseBtn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+  });
+</script>
