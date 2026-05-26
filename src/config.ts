@@ -9,7 +9,7 @@ export const siteConfig = {
     { label: "Hours & Location", href: "/hours" },
     { label: "Reservations", href: "/reservations" },
   ],
-  address: "123 Lorem Street, City, ST 00000",
+  address: "1832 East 2nd Street, Scotch Plains, NJ 07676",
   phone: "(555) 000-0000",
   email: "hello@business.com",
   hours: [

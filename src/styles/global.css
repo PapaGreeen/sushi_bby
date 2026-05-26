@@ -1147,7 +1147,7 @@ footer {
 
   .form-row { grid-template-columns: 1fr; }
 
-  .hero-content { padding: 2rem 1.5rem; border-radius: 12px; }
+  .hero-content { padding: 2rem 1.5rem; border-radius: 12px; margin-inline: var(--pad-x); }
   .hero-content h1 { font-size: 2rem; }
   .hero-controls { bottom: 1rem; right: 1rem; }
 }
