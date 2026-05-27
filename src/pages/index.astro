@@ -1,6 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import barCenteredAiImage from '../assets/bar-centered-ai.png';
+import chefImage from '../assets/chefs-2.png';
+import bar1Image from '../assets/bar1.jpg';
+import bar2Image from '../assets/bar2.jpg';
+import restaurantImage from '../assets/restaurant.jpeg';
+import chefsImage from '../assets/chefs.png';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -8,17 +13,35 @@ const slides = [
   { src: barCenteredAiImage.src, alt: "Sushi BBY bar" },
 ];
 
-const shots = [
-  { alt: "Omakase opening course",      span: "feature" },
-  { alt: "Bluefin nigiri close-up",     span: "wide"    },
-  { alt: "Chef at the counter",         span: ""        },
-  { alt: "Salmon nigiri",               span: ""        },
-  { alt: "Interior — bar seating",      span: "tall"    },
-  { alt: "Uni nigiri",                  span: ""        },
-  { alt: "Spicy tuna crispy rice",      span: ""        },
-  { alt: "Whole tuna on ice",           span: "wide"    },
-  { alt: "House sake selection",        span: ""        },
-  { alt: "Evening service",             span: ""        },
+const galleryShots = [
+  { src: bar1Image.src,       alt: "Interior — bar seating" },
+  { src: bar2Image.src,       alt: "Evening service"        },
+  { src: restaurantImage.src, alt: "Restaurant atmosphere"  },
+  { src: chefsImage.src,      alt: "Chef at the counter"    },
+];
+
+const offerings = [
+  {
+    title: "Omakase",
+    description: "A multi-course progression built around the day's catch. No menu. Trust the chef.",
+    image: barCenteredAiImage.src,
+    imageAlt: "Omakase experience at Sushi BBY",
+    href: "/reservations",
+  },
+  {
+    title: "Tuna Carvings",
+    description: "Whole bluefin broken down tableside — raw, ceremonial, and unforgettable.",
+    image: bar1Image.src,
+    imageAlt: "Tableside tuna carving",
+    href: "/reservations",
+  },
+  {
+    title: "Private Events",
+    description: "The full counter, just yours. Intimate dining for groups up to twelve.",
+    image: bar2Image.src,
+    imageAlt: "Private dining at Sushi BBY",
+    href: "/reservations",
+  },
 ];
 ---
 
@@ -71,16 +94,67 @@ const shots = [
     </div>
   </section>
 
-  <!-- Bento Gallery -->
-  <section class="gallery home-gallery">
-    <div class="gallery-grid">
-      {shots.map((shot) => (
-        <div class={`gallery-item${shot.span ? ` gallery-item--${shot.span}` : ''}`}>
-          <div class="gallery-placeholder" aria-label={shot.alt}>
-            <span>{shot.alt}</span>
-          </div>
+  <!-- Chef Section -->
+  <section class="home-chef">
+    <div class="home-chef-media">
+      <img src={chefImage.src} alt="Executive Chef" />
+    </div>
+    <div class="home-chef-text">
+      <p class="home-chef-label">Executive Chef &amp; Owner</p>
+      <h2>The Chef</h2>
+      <p>Trained in New Jersey. Refined in New York. Rooted here.</p>
+      <div class="btn">
+        <a href={base + '/chef'} class="btn-primary">Full Story</a>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Offerings -->
+  <section class="home-offerings">
+    <div class="home-offerings-inner">
+      <div class="home-offerings-grid">
+        {offerings.map((item) => (
+          <a href={base + item.href} class="offering-card">
+            <div class="offering-card-media">
+              <img src={item.image} alt={item.imageAlt} />
+            </div>
+            <div class="offering-card-overlay" aria-hidden="true"></div>
+            <div class="offering-card-body">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reserve CTA Band -->
+  <section style="background: var(--color-bg); border-top: 1px solid rgba(240, 235, 226, 0.1); padding: 60px var(--pad-x); text-align: center;">
+    <p style="font-family: 'Urbanist', sans-serif; font-size: 1.4rem; font-weight: 600; color: #fff;">
+      Seatings are limited. Reserve yours.
+    </p>
+    <div class="btn" style="margin: 1.75rem auto 0;">
+      <a href={base + '/reservations'} class="btn-primary">Reserve</a>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- Gallery Teaser -->
+  <section class="home-gallery-teaser">
+    <div class="gallery-teaser-row">
+      {galleryShots.map((shot) => (
+        <div class="gallery-teaser-item">
+          <img src={shot.src} alt={shot.alt} />
         </div>
       ))}
+    </div>
+    <div class="gallery-teaser-cta">
+      <div class="btn">
+        <a href={base + '/gallery'} class="btn-primary">View Gallery</a>
+        <span></span>
+      </div>
     </div>
   </section>
 </Layout>

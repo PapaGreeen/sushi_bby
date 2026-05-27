@@ -11,7 +11,7 @@ export const siteConfig = {
   ],
   address: "1832 East 2nd Street, Scotch Plains, NJ 07676",
   phone: "(555) 000-0000",
-  email: "hello@business.com",
+  email: "contact@sushi-bby-omakase.com",
   hours: [
     { day: "Monday – Friday", time: "11am – 9pm" },
     { day: "Saturday", time: "10am – 10pm" },

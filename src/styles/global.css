@@ -102,7 +102,7 @@ address { font-style: normal; }
   height: 50px;
   width: 160px;
   clip-path: path("M 0 25 C 0 -5, -5 0, 80 0 S 160 -5, 160 25, 165 50 80 50, 0 55, 0 25");
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 13px;
   font-family: 'Urbanist', sans-serif;
   font-size: 1rem;
@@ -110,39 +110,19 @@ address { font-style: normal; }
   justify-content: center;
   align-items: center;
   position: absolute;
+  background: transparent;
+  color: #fff;
   transform: translateY(0px);
-  transition: all 0.2s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   text-decoration: none;
 }
 
-.btn-primary {
-  background-color: rgba(255, 45, 75, 0.06);
-  box-shadow: 0px -3px 15px 0px rgba(255, 45, 75, 0.28) inset;
-  color: var(--color-neon-red);
-}
-
-.btn-secondary {
-  background-color: hsla(0, 0%, 6%, 4%);
-  box-shadow: 0px -3px 15px 0px hsla(0, 0%, 6%, 25%) inset;
-  color: #1a1714;
-}
-
-.btn > span {
-  width: 100px;
-  height: 60px;
-  border-radius: 100%;
-  filter: blur(20px);
-  position: absolute;
-  bottom: -50%;
-  transition: all 0.2s ease;
-  pointer-events: none;
-  background-color: rgba(255, 45, 75, 0.25);
-}
-
-.btn:hover > span { opacity: 0.6; }
+.btn > span { display: none; }
 
 .btn:hover > .btn-primary,
 .btn:hover > .btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
   transform: translateY(5px);
 }
 
@@ -370,6 +350,18 @@ footer {
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: linear-gradient(to bottom, transparent, #0f0d0b);
+    z-index: 2;
+    pointer-events: none;
+  }
 }
 
 .hero-slide {
@@ -392,45 +384,40 @@ footer {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.45) 100%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
   z-index: 1;
 }
 
 .hero-content {
-  position: relative;
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
   z-index: 2;
-  padding: 3rem 3.5rem;
-  margin-top: 60px;
-  max-width: 680px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  max-width: 560px;
+  text-align: left;
 
   & h1 {
     font-size: 3.5rem;
     color: #fff;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.5);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   & .tagline {
-    color: rgba(255,255,255,0.88);
-    font-size: 1.05rem;
-    max-width: 540px;
-    margin-inline: auto;
-    margin-bottom: 2rem;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1rem;
+    max-width: 480px;
+    margin-bottom: 1.75rem;
   }
 
   & .hero-actions {
     display: flex;
     gap: 0.75rem;
-    justify-content: center;
     flex-wrap: wrap;
-    margin-top: 0.25rem;
   }
 }
 
@@ -975,8 +962,224 @@ footer {
   }
 }
 
-.home-gallery {
-  padding-top: var(--pad-section);
+/* ── Home: Chef Section ── */
+.home-chef {
+  display: flex;
+  align-items: stretch;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.home-chef-media {
+  position: relative;
+  width: 60%;
+  flex-shrink: 0;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* gradient dissolves the right edge of the photo into the page bg */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      transparent 25%,
+      rgba(15, 13, 11, 0.55) 58%,
+      #0f0d0b 90%
+    );
+    pointer-events: none;
+  }
+}
+
+.home-chef-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 3.5rem 4rem 2rem;
+}
+
+.home-chef-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-subtle);
+}
+
+.home-chef-text h2 {
+  font-size: 2.25rem;
+}
+
+.home-chef-text p {
+  color: var(--color-muted);
+  max-width: 340px;
+}
+
+.home-chef-text .btn {
+  margin-top: 0.5rem;
+}
+
+/* ── Home: Signature Offerings ── */
+.home-offerings {
+  background: var(--color-bg);
+  padding: 3.5rem var(--pad-x) 5rem;
+}
+
+.home-offerings-inner {
+  max-width: var(--width-max);
+  margin-inline: auto;
+}
+
+.home-offerings-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-subtle);
+  margin-bottom: 1.75rem;
+}
+
+.home-offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.offering-card {
+  position: relative;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(240, 235, 226, 0.1);
+  transition: border-color 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.offering-card:hover {
+  border-color: rgba(240, 235, 226, 0.35);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.offering-card-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+}
+
+.offering-card:hover .offering-card-media img {
+  transform: scale(1.045);
+}
+
+.offering-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 25%,
+    rgba(0, 0, 0, 0.25) 52%,
+    rgba(5, 4, 3, 0.82) 80%,
+    rgba(5, 4, 3, 0.96) 100%
+  );
+  pointer-events: none;
+}
+
+.offering-card-body {
+  position: relative;
+  z-index: 2;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  & h3 {
+    font-size: 1.6rem;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  & p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  & .btn { margin-top: 0.75rem; }
+}
+
+/* ── Home: Gallery Teaser ── */
+.home-gallery-teaser {
+  background: var(--color-bg);
+  padding-bottom: 4rem;
+}
+
+.gallery-teaser-row {
+  display: flex;
+  width: 100%;
+  height: 320px;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 120px,
+    black calc(100% - 120px),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 120px,
+    black calc(100% - 120px),
+    transparent
+  );
+}
+
+.gallery-teaser-item {
+  flex: 1;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.gallery-teaser-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 /* ── Hours & Location ── */
@@ -1087,7 +1290,7 @@ footer {
 
 /* ── Responsive: Tablet ── */
 @media (max-width: 1024px) {
-  .hero-content { padding: 2.5rem 2.5rem; }
+  .hero-content { bottom: 2.5rem; left: 2.5rem; }
   .hero-content h1 { font-size: 2.75rem; }
   .hero-controls { bottom: 1.5rem; right: 1.5rem; }
 
@@ -1113,6 +1316,13 @@ footer {
   .events-private .events-private-inner { gap: 2.5rem; }
 
   .gallery .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Chef section narrows the photo a touch on tablet */
+  .home-chef-media { width: 55%; }
+
+  /* Offerings: tighten gap, trim card height slightly */
+  .home-offerings-grid { gap: 1rem; }
+  .offering-card { height: 460px; }
 }
 
 /* ── Responsive: Mobile ── */
@@ -1147,7 +1357,56 @@ footer {
 
   .form-row { grid-template-columns: 1fr; }
 
-  .hero-content { padding: 2rem 1.5rem; border-radius: 12px; margin-inline: var(--pad-x); }
+  .hero-content { bottom: 2rem; left: 1.5rem; }
   .hero-content h1 { font-size: 2rem; }
   .hero-controls { bottom: 1rem; right: 1rem; }
+
+  /* Chef section stacks vertically on mobile */
+  .home-chef { flex-direction: column; min-height: unset; }
+
+  .home-chef-media {
+    width: 100%;
+    height: 360px;
+  }
+
+  /* swap gradient direction: fade bottom of image into page bg */
+  .home-chef-media::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 30%,
+      rgba(15, 13, 11, 0.6) 65%,
+      #0f0d0b 92%
+    );
+  }
+
+  .home-chef-text {
+    padding: 1.5rem var(--pad-x) 3rem;
+  }
+
+  .home-chef-text p { max-width: unset; }
+
+  /* Offerings: single column, shorter cards */
+  .home-offerings-grid { grid-template-columns: 1fr; }
+  .offering-card { height: 400px; }
+
+  /* Gallery teaser: show 2 photos, tighter fade */
+  .gallery-teaser-row {
+    height: 220px;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 60px,
+      black calc(100% - 60px),
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 60px,
+      black calc(100% - 60px),
+      transparent
+    );
+  }
+  .gallery-teaser-item:nth-child(3),
+  .gallery-teaser-item:nth-child(4) { display: none; }
 }
