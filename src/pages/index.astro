@@ -5,12 +5,14 @@ import chefImage from '../assets/chefs-2.png';
 import bar1Image from '../assets/bar1.jpg';
 import bar2Image from '../assets/bar2.jpg';
 import restaurantImage from '../assets/restaurant.jpeg';
+import barImageAI from '../assets/barAI.png';
 import chefsImage from '../assets/chefs.png';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const slides = [
   { src: barCenteredAiImage.src, alt: "Sushi BBY bar" },
+  { src: barImageAI.src, alt: "Sushi BBY bar 2" }
 ];
 
 const galleryShots = [
@@ -23,7 +25,7 @@ const galleryShots = [
 const offerings = [
   {
     title: "Omakase",
-    description: "A multi-course progression built around the day's catch. No menu. Trust the chef.",
+    description: "A 13 course experience. No menu. Trust the chef.",
     image: barCenteredAiImage.src,
     imageAlt: "Omakase experience at Sushi BBY",
     href: "/reservations",
@@ -101,7 +103,7 @@ const offerings = [
     </div>
     <div class="home-chef-text">
       <p class="home-chef-label">Executive Chef &amp; Owner</p>
-      <h2>The Chef</h2>
+      <h2>The Chefs</h2>
       <p>Trained in New Jersey. Refined in New York. Rooted here.</p>
       <div class="btn">
         <a href={base + '/chef'} class="btn-primary">Full Story</a>
