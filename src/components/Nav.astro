@@ -3,6 +3,10 @@ import { siteConfig } from '../config';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  const target = base + href;
+  return currentPath === target || currentPath === target + '/';
+};
 ---
 
 <nav class="site-nav">
@@ -16,7 +20,7 @@ const currentPath = Astro.url.pathname;
   <ul class="nav-links" id="nav-links">
     {siteConfig.nav.map((link) => (
       <li>
-        <a href={base + link.href} class={currentPath === base + link.href ? 'active' : ''}>
+        <a href={base + link.href} class={isActive(link.href) ? 'active' : ''}>
           {link.label}
         </a>
       </li>

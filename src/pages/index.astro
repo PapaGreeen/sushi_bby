@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import barCenteredAiImage from '../assets/bar-centered-ai.png';
+import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
 import chefImage from '../assets/chefs-2.png';
 import bar1Image from '../assets/bar1.jpg';
 import bar2Image from '../assets/bar2.jpg';
 import restaurantImage from '../assets/restaurant.jpeg';
-import barImageAI from '../assets/barAI.png';
+import barImageAI from '../assets/placeholder/barAI.png'
 import chefsImage from '../assets/chefs.png';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -97,7 +97,7 @@ const offerings = [
   </section>
 
   <!-- Chef Section -->
-  <section class="home-chef">
+  <section class="home-chef anim-fade-up">
     <div class="home-chef-media">
       <img src={chefImage.src} alt="Executive Chef" />
     </div>
@@ -117,7 +117,7 @@ const offerings = [
     <div class="home-offerings-inner">
       <div class="home-offerings-grid">
         {offerings.map((item) => (
-          <a href={base + item.href} class="offering-card">
+          <a href={base + item.href} class="offering-card anim-fade-up">
             <div class="offering-card-media">
               <img src={item.image} alt={item.imageAlt} />
             </div>
@@ -133,7 +133,7 @@ const offerings = [
   </section>
 
   <!-- Reserve CTA Band -->
-  <section style="background: var(--color-bg); border-top: 1px solid rgba(240, 235, 226, 0.1); padding: 60px var(--pad-x); text-align: center;">
+  <section class="anim-fade-up" style="background: var(--color-bg); border-top: 1px solid rgba(240, 235, 226, 0.1); padding: 60px var(--pad-x); text-align: center;">
     <p style="font-family: 'Urbanist', sans-serif; font-size: 1.4rem; font-weight: 600; color: #fff;">
       Seatings are limited. Reserve yours.
     </p>
@@ -144,7 +144,7 @@ const offerings = [
   </section>
 
   <!-- Gallery Teaser -->
-  <section class="home-gallery-teaser">
+  <section class="home-gallery-teaser anim-fade-up">
     <div class="gallery-teaser-row">
       {galleryShots.map((shot) => (
         <div class="gallery-teaser-item">
@@ -192,4 +192,18 @@ const offerings = [
     pauseBtn.classList.toggle('is-paused', paused);
     pauseBtn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
   });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -48px 0px' }
+  );
+  document.querySelectorAll<Element>('.anim-fade-up').forEach(el => observer.observe(el));
 </script>

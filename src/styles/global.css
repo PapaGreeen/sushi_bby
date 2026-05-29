@@ -393,6 +393,11 @@ footer {
   z-index: 1;
 }
 
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
 .hero-content {
   position: absolute;
   bottom: 3rem;
@@ -400,6 +405,7 @@ footer {
   z-index: 2;
   max-width: 560px;
   text-align: left;
+  animation: hero-enter 0.8s ease 0.3s both;
 
   & h1 {
     font-size: 3.5rem;
@@ -1409,4 +1415,26 @@ footer {
   }
   .gallery-teaser-item:nth-child(3),
   .gallery-teaser-item:nth-child(4) { display: none; }
+}
+
+/* ── Scroll Animations ── */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.anim-fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* stagger offering cards */
+.offering-card.anim-fade-up:nth-child(2) { transition-delay: 0.12s; }
+.offering-card.anim-fade-up:nth-child(3) { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up,
+  .anim-fade-up.in-view { opacity: 1; transform: none; transition: none; }
+  .hero-content { animation: none; }
 }
