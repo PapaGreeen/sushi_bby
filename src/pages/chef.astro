@@ -14,7 +14,7 @@ const timeline = [
 <Layout title="The Chef" description="Meet Chef, the chef behind Sushi BBY.">
 
   <!-- Hero: portrait left, text right -->
-  <section class="chef-hero">
+  <section class="chef-hero anim-fade-up">
     <div class="chef-hero-media">
       <img src={chefImage.src} alt="Chef" />
     </div>
@@ -28,7 +28,7 @@ const timeline = [
   </section>
 
   <!-- Biography -->
-  <section class="chef-bio">
+  <section class="chef-bio anim-fade-up">
     <div class="chef-bio-inner">
       <div class="chef-bio-text">
         <h2>Career</h2>
@@ -63,7 +63,7 @@ const timeline = [
   </section>
 
   <!-- Philosophy -->
-  <section class="chef-philosophy">
+  <section class="chef-philosophy anim-fade-up">
     <blockquote>
       "sushi sushi sushi sushi sushi sushi sushi sushi"
       <cite>— Chef Carmen</cite>
@@ -76,7 +76,7 @@ const timeline = [
       <h2>Background</h2>
       <ol class="timeline-list">
         {timeline.map((item) => (
-          <li class="timeline-item">
+          <li class="timeline-item anim-fade-up">
             <span class="timeline-year">{item.year}</span>
             <p>{item.detail}</p>
           </li>

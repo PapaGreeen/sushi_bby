@@ -1433,6 +1433,12 @@ footer {
 .offering-card.anim-fade-up:nth-child(2) { transition-delay: 0.12s; }
 .offering-card.anim-fade-up:nth-child(3) { transition-delay: 0.24s; }
 
+/* stagger chef timeline items */
+.timeline-item.anim-fade-up:nth-child(2) { transition-delay: 0.08s; }
+.timeline-item.anim-fade-up:nth-child(3) { transition-delay: 0.16s; }
+.timeline-item.anim-fade-up:nth-child(4) { transition-delay: 0.24s; }
+.timeline-item.anim-fade-up:nth-child(5) { transition-delay: 0.32s; }
+
 @media (prefers-reduced-motion: reduce) {
   .anim-fade-up,
   .anim-fade-up.in-view { opacity: 1; transform: none; transition: none; }

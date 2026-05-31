@@ -21,7 +21,7 @@ const photos = [
 ---
 
 <Layout title="Gallery" description="Photos from Sushi BBY — food, events, and the restaurant.">
-  <section class="page-header">
+  <section class="page-header anim-fade-up">
     <h1>Gallery</h1>
     <p>
       A look inside the restaurant — our food, our events, and the people
@@ -30,7 +30,7 @@ const photos = [
   </section>
 
   <section class="gallery">
-    <div class="gallery-grid">
+    <div class="gallery-grid anim-fade-up">
       {photos.map((photo) => (
         <div class={`gallery-item${photo.span ? ` gallery-item--${photo.span}` : ''}`}>
           <!--
