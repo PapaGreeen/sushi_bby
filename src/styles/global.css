@@ -386,8 +386,8 @@ footer {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    transparent 45%,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.35) 50%,
     rgba(0, 0, 0, 0.75) 100%
   );
   z-index: 1;
@@ -400,7 +400,7 @@ footer {
 
 .hero-content {
   position: absolute;
-  bottom: 3rem;
+  bottom: 5.5rem;
   left: 3rem;
   z-index: 2;
   max-width: 560px;
@@ -1296,7 +1296,7 @@ footer {
 
 /* ── Responsive: Tablet ── */
 @media (max-width: 1024px) {
-  .hero-content { bottom: 2.5rem; left: 2.5rem; }
+  .hero-content { bottom: 4.5rem; left: 2.5rem; }
   .hero-content h1 { font-size: 2.75rem; }
   .hero-controls { bottom: 1.5rem; right: 1.5rem; }
 
@@ -1363,7 +1363,7 @@ footer {
 
   .form-row { grid-template-columns: 1fr; }
 
-  .hero-content { bottom: 2rem; left: 1.5rem; }
+  .hero-content { bottom: 3.5rem; left: 1.5rem; }
   .hero-content h1 { font-size: 2rem; }
   .hero-controls { bottom: 1rem; right: 1rem; }
 

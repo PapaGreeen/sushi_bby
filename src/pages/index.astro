@@ -109,7 +109,7 @@ const offerings = [
   </section>
 
   <!-- Reserve CTA Band -->
-  <section class="anim-fade-up" style="background: var(--color-bg); border-top: 1px solid rgba(240, 235, 226, 0.1); padding: 60px var(--pad-x); text-align: center;">
+  <section class="anim-fade-up" style="background: var(--color-bg); border-top: 1px solid rgba(240, 235, 226, 0.1); padding: 100px var(--pad-x); text-align: center;">
     <p style="font-family: 'Urbanist', sans-serif; font-size: 1.4rem; font-weight: 600; color: #fff;">
       Seatings are limited. Reserve yours.
     </p>
@@ -119,7 +119,7 @@ const offerings = [
     </div>
   </section>
 
-  <!-- Chef Section -->
+  <!-- Meet the Chef -->
   <section class="home-chef anim-fade-up">
     <div class="home-chef-media">
       <img src={chefImage.src} alt="Executive Chef" />
@@ -132,6 +132,17 @@ const offerings = [
         <a href={base + '/chef'} class="btn-primary">Full Story</a>
         <span></span>
       </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="anim-fade-up" style="background: linear-gradient(to bottom, var(--color-bg) 0%, #0f0f0f 22%); padding: 120px var(--pad-x); text-align: center;">
+    <p style="font-family: 'Urbanist', sans-serif; font-size: 1.5rem; font-weight: 600; color: #fff; letter-spacing: 0.01em;">
+      The counter is ready when you are.
+    </p>
+    <div class="btn" style="margin: 2rem auto 0;">
+      <a href={base + '/reservations'} class="btn-primary">Reserve a Seat</a>
+      <span></span>
     </div>
   </section>
 </Layout>
