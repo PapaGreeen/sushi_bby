@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "SUSHI BBY",
+  name: "SUSHI BBY OMAKASE",
   tagline: "HOMAKASE ✨ TUNA CARVINGS ✨ PRIVATE EVENTS",
   instagram: "https://instagram.com/sushi_bby_official",
   nav: [
