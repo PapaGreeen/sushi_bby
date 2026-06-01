@@ -4,9 +4,7 @@ import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
 import chefImage from '../assets/chefs-2.png';
 import bar1Image from '../assets/bar1.jpg';
 import bar2Image from '../assets/bar2.jpg';
-import restaurantImage from '../assets/restaurant.jpeg';
 import barImageAI from '../assets/placeholder/barAI.png'
-import chefsImage from '../assets/chefs.png';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -15,12 +13,6 @@ const slides = [
   { src: barImageAI.src, alt: "Sushi BBY bar 2" }
 ];
 
-const galleryShots = [
-  { src: bar1Image.src,       alt: "Interior — bar seating" },
-  { src: bar2Image.src,       alt: "Evening service"        },
-  { src: restaurantImage.src, alt: "Restaurant atmosphere"  },
-  { src: chefsImage.src,      alt: "Chef at the counter"    },
-];
 
 const offerings = [
   {
@@ -96,22 +88,6 @@ const offerings = [
     </div>
   </section>
 
-  <!-- Chef Section -->
-  <section class="home-chef anim-fade-up">
-    <div class="home-chef-media">
-      <img src={chefImage.src} alt="Executive Chef" />
-    </div>
-    <div class="home-chef-text">
-      <p class="home-chef-label">Executive Chef &amp; Owner</p>
-      <h2>The Chefs</h2>
-      <p>Trained in New Jersey. Refined in New York. Rooted here.</p>
-      <div class="btn">
-        <a href={base + '/chef'} class="btn-primary">Full Story</a>
-        <span></span>
-      </div>
-    </div>
-  </section>
-
   <!-- Signature Offerings -->
   <section class="home-offerings">
     <div class="home-offerings-inner">
@@ -143,18 +119,17 @@ const offerings = [
     </div>
   </section>
 
-  <!-- Gallery Teaser -->
-  <section class="home-gallery-teaser anim-fade-up">
-    <div class="gallery-teaser-row">
-      {galleryShots.map((shot) => (
-        <div class="gallery-teaser-item">
-          <img src={shot.src} alt={shot.alt} />
-        </div>
-      ))}
+  <!-- Chef Section -->
+  <section class="home-chef anim-fade-up">
+    <div class="home-chef-media">
+      <img src={chefImage.src} alt="Executive Chef" />
     </div>
-    <div class="gallery-teaser-cta">
+    <div class="home-chef-text">
+      <p class="home-chef-label">Executive Chef &amp; Owner</p>
+      <h2>The Chefs</h2>
+      <p>Trained in New Jersey. Refined in New York. Rooted here.</p>
       <div class="btn">
-        <a href={base + '/gallery'} class="btn-primary">View Gallery</a>
+        <a href={base + '/chef'} class="btn-primary">Full Story</a>
         <span></span>
       </div>
     </div>
