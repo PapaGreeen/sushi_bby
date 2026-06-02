@@ -4,8 +4,7 @@ export const siteConfig = {
   instagram: "https://instagram.com/sushi_bby_official",
   nav: [
     { label: "Experience", href: "/" },
-    { label: "Chef", href: "/chef" },
-   /* DELETE { label: "Gallery", href: "/gallery" }, */
+    { label: "Gallery", href: "/gallery" },
     { label: "Hours & Location", href: "/hours" },
     { label: "Reservations", href: "/reservations" },
   ],

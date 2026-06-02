@@ -1,22 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// span: "wide" = 2 cols, "tall" = 2 rows, "feature" = 2x2, default = 1x1
-const photos = [
-  { alt: "Omakase course — bluefin nigiri",     span: "feature" },
-  { alt: "Tuna carving tableside",               span: "wide"    },
-  { alt: "Salmon nigiri close-up",               span: ""        },
-  { alt: "Private dining setup",                 span: ""        },
-  { alt: "Chef Carmen at the counter",           span: "tall"    },
-  { alt: "House sake selection",                 span: ""        },
-  { alt: "Spicy tuna crispy rice",               span: ""        },
-  { alt: "Whole bluefin on ice",                 span: "wide"    },
-  { alt: "Uni nigiri",                           span: ""        },
-  { alt: "Interior — bar seating",               span: ""        },
-  { alt: "Gyoza with ponzu",                     span: ""        },
-  { alt: "Omakase platter",                      span: "wide"    },
-  { alt: "Chef's hands — knife work",            span: ""        },
-  { alt: "Dining room — evening service",        span: ""        },
+const inHouse = [
+  { alt: "Omakase course — bluefin nigiri" },
+  { alt: "Salmon nigiri close-up" },
+  { alt: "House sake selection" },
+  { alt: "Spicy tuna crispy rice" },
+  { alt: "Uni nigiri" },
+  { alt: "Interior — bar seating" },
+  { alt: "Gyoza with ponzu" },
+  { alt: "Omakase platter" },
+  { alt: "Chef's hands — knife work" },
+  { alt: "Dining room — evening service" },
+  { alt: "Whole bluefin on ice" },
+  { alt: "Sushi BBY counter" },
+];
+
+const privateEvents = [
+  { alt: "Tuna carving tableside" },
+  { alt: "Private dining setup" },
+  { alt: "Chef Carmen at the counter" },
+  { alt: "Event setup — full counter" },
+  { alt: "Group dining" },
+  { alt: "Tuna on ice" },
 ];
 ---
 
@@ -29,15 +35,28 @@ const photos = [
     </p>
   </section>
 
-  <section class="gallery">
-    <div class="gallery-grid anim-fade-up">
-      {photos.map((photo) => (
-        <div class={`gallery-item${photo.span ? ` gallery-item--${photo.span}` : ''}`}>
-          <!--
-            Replace with: <img src="/images/gallery/filename.jpg" alt={photo.alt} />
-            Recommended size: 1200×1200 for square, 2400×1200 for wide, 1200×2400 for tall
-          -->
-          <div class="gallery-placeholder" aria-label={photo.alt}>
+  <div class="gallery-tabs">
+    <button class="gallery-tab active" data-section="inhouse">In House</button>
+    <button class="gallery-tab" data-section="private">Private Events</button>
+  </div>
+
+  <section class="gallery-section" id="gallery-inhouse">
+    <div class="gallery-new-grid anim-fade-up">
+      {inHouse.map((photo) => (
+        <div class="gallery-new-item">
+          <div class="gallery-new-placeholder" aria-label={photo.alt}>
+            <span>{photo.alt}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="gallery-section hidden" id="gallery-private">
+    <div class="gallery-new-grid">
+      {privateEvents.map((photo) => (
+        <div class="gallery-new-item">
+          <div class="gallery-new-placeholder" aria-label={photo.alt}>
             <span>{photo.alt}</span>
           </div>
         </div>
@@ -45,3 +64,27 @@ const photos = [
     </div>
   </section>
 </Layout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.gallery-tab');
+  const sections = document.querySelectorAll<HTMLElement>('.gallery-section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (tab.classList.contains('active')) return;
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const targetId = 'gallery-' + tab.dataset.section;
+      sections.forEach(s => {
+        if (s.id === targetId) {
+          s.classList.remove('hidden');
+          s.classList.add('section-enter');
+          s.addEventListener('animationend', () => s.classList.remove('section-enter'), { once: true });
+        } else {
+          s.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

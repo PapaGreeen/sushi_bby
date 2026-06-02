@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
-import chefImage from '../assets/placeholder/chefs-2.png';
 import bar1Image from '../assets/bar1.jpg';
 import barImageAI from '../assets/placeholder/barAI.png';
 import sushiImage from '../assets/placeholder/Sushi-placeholder.avif';
@@ -24,14 +23,14 @@ const offerings = [
     href: "/reservations",
   },
   {
-    title: "Tuna Carvings",
+    title: "Private Events",
     description: "Whole bluefin broken down tableside — raw, ceremonial, and unforgettable.",
     image: carvingImage.src,
     imageAlt: "Tableside tuna carving",
     href: "/reservations",
   },
   {
-    title: "Private Events",
+    title: "The Experience",
     description: "The full counter, just yours. Intimate dining for groups up to twelve.",
     image: bar1Image.src,
     imageAlt: "Private dining at Sushi BBY",
@@ -94,7 +93,7 @@ const offerings = [
     <div class="home-offerings-inner">
       <div class="home-offerings-grid">
         {offerings.map((item) => (
-          <a href={base + item.href} class="offering-card anim-fade-up">
+          <div class="offering-card anim-fade-up">
             <div class="offering-card-media">
               <img src={item.image} alt={item.imageAlt} />
             </div>
@@ -103,7 +102,7 @@ const offerings = [
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
@@ -120,32 +119,11 @@ const offerings = [
     </div>
   </section>
 
-  <!-- Meet the Chef -->
-  <section class="home-chef anim-fade-up">
-    <div class="home-chef-media">
-      <img src={chefImage.src} alt="Executive Chef" />
-    </div>
-    <div class="home-chef-text">
-      <p class="home-chef-label">Executive Chef &amp; Owner</p>
-      <h2>The Chefs</h2>
-      <p>Trained in New Jersey. Refined in New York.</p>
-      <div class="btn">
-        <a href={base + '/chef'} class="btn-primary">Full Story</a>
-        <span></span>
-      </div>
-    </div>
-  </section>
+  <!-- Location strip -->
+  <div style="text-align: center; padding: 1.25rem var(--pad-x); font-family: 'Urbanist', sans-serif; font-size: 0.85rem; color: var(--color-muted, #888); letter-spacing: 0.04em;">
+    Scotch Plains, NJ &nbsp;·&nbsp; <a href={base + '/hours'} style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Hours &amp; Location</a>
+  </div>
 
-  <!-- Closing CTA -->
-  <section class="anim-fade-up" style="background: #0f0f0f; border-top: 1px solid var(--color-border); padding: 120px var(--pad-x); text-align: center;">
-    <p style="font-family: 'Urbanist', sans-serif; font-size: 1.5rem; font-weight: 600; color: #fff; letter-spacing: 0.01em;">
-      The counter is ready when you are.
-    </p>
-    <div class="btn" style="margin: 2rem auto 0;">
-      <a href={base + '/reservations'} class="btn-primary">Reserve a Seat</a>
-      <span></span>
-    </div>
-  </section>
 </Layout>
 
 <script>
