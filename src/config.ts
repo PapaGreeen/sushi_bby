@@ -5,7 +5,7 @@ export const siteConfig = {
   nav: [
     { label: "Experience", href: "/" },
     { label: "Chef", href: "/chef" },
-   /* { label: "Gallery", href: "/gallery" }, */
+   /* DELETE { label: "Gallery", href: "/gallery" }, */
     { label: "Hours & Location", href: "/hours" },
     { label: "Reservations", href: "/reservations" },
   ],
