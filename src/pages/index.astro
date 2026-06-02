@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
-import chefImage from '../assets/chefs-2.png';
+import chefImage from '../assets/placeholder/chefs-2.png';
 import bar1Image from '../assets/bar1.jpg';
-import bar2Image from '../assets/bar2.jpg';
-import barImageAI from '../assets/placeholder/barAI.png'
+import barImageAI from '../assets/placeholder/barAI.png';
+import sushiImage from '../assets/placeholder/sushi-placeholder.avif'
+import carvingImage from '../assets/tuna-carving.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -18,21 +19,21 @@ const offerings = [
   {
     title: "Omakase",
     description: "A 13 course experience. No menu. Trust the chef.",
-    image: barCenteredAiImage.src,
+    image: sushiImage.src,
     imageAlt: "Omakase experience at Sushi BBY",
     href: "/reservations",
   },
   {
     title: "Tuna Carvings",
     description: "Whole bluefin broken down tableside — raw, ceremonial, and unforgettable.",
-    image: bar1Image.src,
+    image: carvingImage.src,
     imageAlt: "Tableside tuna carving",
     href: "/reservations",
   },
   {
     title: "Private Events",
     description: "The full counter, just yours. Intimate dining for groups up to twelve.",
-    image: bar2Image.src,
+    image: bar1Image.src,
     imageAlt: "Private dining at Sushi BBY",
     href: "/reservations",
   },
