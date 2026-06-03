@@ -64,5 +64,24 @@ const ogUrl   = new URL(Astro.url.pathname, Astro.site).href;
       { threshold: 0.1, rootMargin: '0px 0px -48px 0px' }
     );
     document.querySelectorAll('.anim-fade-up').forEach(el => observer.observe(el));
+
+    // Open address links in the platform-appropriate maps app
+    document.querySelectorAll<HTMLAnchorElement>('[data-address]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const address = (e.currentTarget as HTMLAnchorElement).dataset.address ?? '';
+        const encoded = encodeURIComponent(address);
+        const ua = navigator.userAgent;
+        const isIOS = /iPad|iPhone|iPod/.test(ua) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isAndroid = /Android/.test(ua);
+        const url = isIOS
+          ? `https://maps.apple.com/?q=${encoded}`
+          : isAndroid
+            ? `geo:0,0?q=${encoded}`
+            : `https://www.google.com/maps/search/?api=1&query=${encoded}`;
+        window.location.href = url;
+      });
+    });
   </script>
 </html>
