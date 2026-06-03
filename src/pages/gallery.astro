@@ -1,90 +1,301 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const inHouse = [
-  { alt: "Omakase course — bluefin nigiri" },
-  { alt: "Salmon nigiri close-up" },
-  { alt: "House sake selection" },
-  { alt: "Spicy tuna crispy rice" },
-  { alt: "Uni nigiri" },
-  { alt: "Interior — bar seating" },
-  { alt: "Gyoza with ponzu" },
-  { alt: "Omakase platter" },
-  { alt: "Chef's hands — knife work" },
-  { alt: "Dining room — evening service" },
-  { alt: "Whole bluefin on ice" },
-  { alt: "Sushi BBY counter" },
-];
+import sushiImg       from '../assets/placeholder/sushi-placeholder.avif';
+import barCenteredImg from '../assets/placeholder/bar-centered-ai.png';
+import barAIImg       from '../assets/placeholder/barAI.png';
+import carvingImg     from '../assets/Instagram/tuna-carving.jpg';
+import carving2Img    from '../assets/Instagram/tuna-carving2.jpg';
+import carving3Img    from '../assets/Instagram/tuna-carving3.jpg';
+import event1Img      from '../assets/Instagram/private-event1.jpg';
+import event2Img      from '../assets/Instagram/private-event2.jpg';
+import bar1Img        from '../assets/bar1.jpg';
+import bar2Img        from '../assets/bar2.jpg';
+import restaurantImg  from '../assets/restaurant.jpeg';
 
-const privateEvents = [
-  { alt: "Tuna carving tableside" },
-  { alt: "Private dining setup" },
-  { alt: "Chef Carmen at the counter" },
-  { alt: "Event setup — full counter" },
-  { alt: "Group dining" },
-  { alt: "Tuna on ice" },
+const sections = [
+  {
+    title: "Omakase",
+    slug: "omakase",
+    description: "A 13 course experience. No menu. Trust the chef.",
+    images: [
+      { src: sushiImg.src,       alt: "Omakase experience at Sushi BBY" },
+      { src: barCenteredImg.src, alt: "Sushi BBY bar" },
+      { src: barAIImg.src,       alt: "Sushi BBY bar interior" },
+    ],
+  },
+  {
+    title: "Private Events",
+    slug: "private-events",
+    description: "We offer in-house private events and off-site, exclusive experiences including Homakase (omakase at home), Tuna Carvings, and Office Parties. A Whole bluefin broken down tableside — raw, ceremonial, and unforgettable.",
+    images: [
+      { src: carving2Img.src,  alt: "Tuna carving tableside" },
+      { src: carvingImg.src, alt: "Tuna carving" },
+      { src: carving3Img.src, alt: "Tuna carving ceremony" },
+      { src: event1Img.src,   alt: "Private event at Sushi BBY" },
+      { src: event2Img.src,   alt: "Private dining" },
+    ],
+  },
+  {
+    title: "The Experience",
+    slug: "the-experience",
+    description: "The full counter, just yours. Intimate dining for groups up to twelve.",
+    images: [
+      { src: bar1Img.src,      alt: "Sushi BBY counter" },
+      { src: bar2Img.src,      alt: "Sushi BBY bar" },
+      { src: restaurantImg.src, alt: "Restaurant interior" },
+    ],
+  },
 ];
 ---
 
 <Layout title="Gallery" description="Photos from Sushi BBY — food, events, and the restaurant.">
   <section class="page-header anim-fade-up">
     <h1>Gallery</h1>
-    <p>
-      A look inside the restaurant — our food, our events, and the people
-      behind them.
-    </p>
+    <p>A look behind the scenes.</p>
   </section>
 
-  <div class="gallery-tabs">
-    <button class="gallery-tab active" data-section="inhouse">In House</button>
-    <button class="gallery-tab" data-section="private">Private Events</button>
-  </div>
+  {sections.map((section, i) => (
+    <div id={section.slug} class={`zz-section anim-fade-up${i % 2 === 1 ? ' zz-reversed' : ''}`}>
 
-  <section class="gallery-section" id="gallery-inhouse">
-    <div class="gallery-new-grid anim-fade-up">
-      {inHouse.map((photo) => (
-        <div class="gallery-new-item">
-          <div class="gallery-new-placeholder" aria-label={photo.alt}>
-            <span>{photo.alt}</span>
-          </div>
+      <div class="zz-text">
+        <h2>{section.title}</h2>
+        <p>{section.description}</p>
+      </div>
+
+      <div class="zz-carousel" data-carousel>
+        <div class="zz-track">
+          {section.images.map((img, j) => (
+            <div class={`zz-slide${j === 0 ? ' active' : ''}`}>
+              <img src={img.src} alt={img.alt} loading={i === 0 && j === 0 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </section>
 
-  <section class="gallery-section hidden" id="gallery-private">
-    <div class="gallery-new-grid">
-      {privateEvents.map((photo) => (
-        <div class="gallery-new-item">
-          <div class="gallery-new-placeholder" aria-label={photo.alt}>
-            <span>{photo.alt}</span>
-          </div>
-        </div>
-      ))}
+        {section.images.length > 1 && (
+          <>
+            <button class="zz-btn zz-prev" aria-label="Previous image">&lsaquo;</button>
+            <button class="zz-btn zz-next" aria-label="Next image">&rsaquo;</button>
+            <div class="zz-dots">
+              {section.images.map((_, j) => (
+                <button
+                  class={`zz-dot${j === 0 ? ' active' : ''}`}
+                  aria-label={`Image ${j + 1}`}
+                  data-index={String(j)}
+                ></button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
     </div>
-  </section>
+  ))}
 </Layout>
 
 <script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.gallery-tab');
-  const sections = document.querySelectorAll<HTMLElement>('.gallery-section');
+  // Center the hash target in the viewport after the browser's hash scroll settles
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => {
+        const rect   = target.getBoundingClientRect();
+        const center = window.scrollY + rect.top + rect.height / 2 - window.innerHeight / 2;
+        window.scrollTo({ top: Math.max(0, center), behavior: 'smooth' });
+      }, 50);
+    }
+  }
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      if (tab.classList.contains('active')) return;
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(carousel => {
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>('.zz-slide'));
+    const dots   = Array.from(carousel.querySelectorAll<HTMLButtonElement>('.zz-dot'));
+    const prev   = carousel.querySelector<HTMLButtonElement>('.zz-prev');
+    const next   = carousel.querySelector<HTMLButtonElement>('.zz-next');
 
-      const targetId = 'gallery-' + tab.dataset.section;
-      sections.forEach(s => {
-        if (s.id === targetId) {
-          s.classList.remove('hidden');
-          s.classList.add('section-enter');
-          s.addEventListener('animationend', () => s.classList.remove('section-enter'), { once: true });
-        } else {
-          s.classList.add('hidden');
-        }
-      });
-    });
+    if (slides.length <= 1) return;
+
+    let current = 0;
+
+    function goTo(index: number) {
+      slides[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = ((index % slides.length) + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current]?.classList.add('active');
+    }
+
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   });
 </script>
+
+<style>
+  /* ── Page header — resets global .page-header surface/border ── */
+  .page-header {
+    background: transparent;
+    border-bottom: none;
+    padding: 5rem var(--pad-x) 3rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Zig-zag section ── */
+  .zz-section {
+    display: flex;
+    align-items: center;
+    gap: 7rem;
+    padding: 5rem var(--pad-x);
+    border-top: 1px solid var(--color-border);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .zz-section.zz-reversed {
+    flex-direction: row-reverse;
+  }
+
+  /* ── Text side ── */
+  .zz-text {
+    flex: 0 0 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+
+  .zz-text h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-text-primary);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .zz-text p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── Carousel ── */
+  .zz-carousel {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-bg-surface);
+    border-radius: 12px;
+    border: 1px solid rgba(240, 235, 226, 0.1);
+  }
+
+  .zz-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .zz-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .zz-slide.active {
+    opacity: 1;
+  }
+
+  .zz-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Carousel controls ── */
+  .zz-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+  }
+
+  .zz-btn:hover {
+    color: #fff;
+    transform: translateY(-50%) scale(1.3);
+  }
+
+  .zz-prev { left: 0.5rem; }
+  .zz-next { right: 0.75rem; }
+
+  .zz-dots {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4rem;
+    z-index: 2;
+  }
+
+  .zz-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .zz-dot:hover:not(.active) {
+    transform: scale(1.4);
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .zz-dot.active {
+    background: var(--color-neon-teal);
+    transform: scale(1.25);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .zz-section,
+    .zz-section.zz-reversed {
+      flex-direction: column;
+      gap: 2rem;
+      padding: 3rem var(--pad-x);
+    }
+
+    .zz-text {
+      flex: none;
+      width: 100%;
+    }
+
+    .zz-carousel {
+      width: 100%;
+    }
+  }
+</style>

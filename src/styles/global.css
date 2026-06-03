@@ -1174,7 +1174,7 @@ footer {
   justify-content: flex-end;
   text-decoration: none;
   color: var(--color-text);
-  cursor: default;
+  cursor: pointer;
 }
 
 .offering-card:hover {

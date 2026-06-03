@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../config';
+import instagramIcon from '../assets/Instagram/instagram.svg?raw';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -7,11 +8,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <footer>
   <div class="footer-inner">
     <a href={siteConfig.instagram} class="footer-instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4.5"/>
-        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-      </svg>
+      <Fragment set:html={instagramIcon} />
     </a>
 
     <p class="footer-trademark">{siteConfig.name}<span class="footer-tm">™</span></p>

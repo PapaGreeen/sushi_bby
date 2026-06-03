@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config';
 import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
 import bar1Image from '../assets/bar1.jpg';
 import barImageAI from '../assets/placeholder/barAI.png';
 import sushiImage from '../assets/placeholder/Sushi-placeholder.avif';
-import carvingImage from '../assets/tuna-carving.jpg';
+import carvingImage from '../assets/instagram/tuna-carving.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -20,21 +21,21 @@ const offerings = [
     description: "A 13 course experience. No menu. Trust the chef.",
     image: sushiImage.src,
     imageAlt: "Omakase experience at Sushi BBY",
-    href: "/reservations",
+    href: "/gallery#omakase",
   },
   {
     title: "Private Events",
     description: "Whole bluefin broken down tableside — raw, ceremonial, and unforgettable.",
     image: carvingImage.src,
     imageAlt: "Tableside tuna carving",
-    href: "/reservations",
+    href: "/gallery#private-events",
   },
   {
     title: "The Experience",
     description: "The full counter, just yours. Intimate dining for groups up to twelve.",
     image: bar1Image.src,
     imageAlt: "Private dining at Sushi BBY",
-    href: "/reservations",
+    href: "/gallery#the-experience",
   },
 ];
 ---
@@ -93,7 +94,7 @@ const offerings = [
     <div class="home-offerings-inner">
       <div class="home-offerings-grid">
         {offerings.map((item) => (
-          <div class="offering-card anim-fade-up">
+          <a href={base + item.href} class="offering-card anim-fade-up">
             <div class="offering-card-media">
               <img src={item.image} alt={item.imageAlt} />
             </div>
@@ -102,17 +103,15 @@ const offerings = [
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
   <!-- Reserve CTA Band -->
-  <section class="anim-fade-up" style="background: var(--color-bg); border-top: 1px solid var(--color-border); padding: 100px var(--pad-x); text-align: center;">
-    <p style="font-family: 'Urbanist', sans-serif; font-size: 1.4rem; font-weight: 600; color: #fff;">
-      Seatings are limited. Reserve yours.
-    </p>
+  <section class="cta-band anim-fade-up">
+    <p class="cta-band-heading">Seatings are limited. Reserve yours.</p>
     <div class="btn" style="margin: 1.75rem auto 0;">
       <a href={base + '/reservations'} class="btn-primary">Reserve</a>
       <span></span>
@@ -120,11 +119,45 @@ const offerings = [
   </section>
 
   <!-- Location strip -->
-  <div style="text-align: center; padding: 1.25rem var(--pad-x); font-family: 'Urbanist', sans-serif; font-size: 0.85rem; color: var(--color-muted, #888); letter-spacing: 0.04em;">
-    Scotch Plains, NJ &nbsp;·&nbsp; <a href={base + '/hours'} style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Hours &amp; Location</a>
+  <div class="location-strip">
+    <a href="https://maps.apple.com/?q=1832+East+2nd+Street+Scotch+Plains+NJ+07676">{siteConfig.address}</a>
+    &nbsp;·&nbsp;
+    <a href={base + '/hours'}>Hours &amp; Location</a>
   </div>
 
 </Layout>
+
+<style>
+  .cta-band {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    padding: 100px var(--pad-x);
+    text-align: center;
+  }
+
+  .cta-band-heading {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .location-strip {
+    text-align: center;
+    padding: 1.25rem var(--pad-x);
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .location-strip a {
+    color: inherit;
+    text-underline-offset: 3px;
+  }
+
+  .location-strip a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 <script>
   const slides = Array.from(document.querySelectorAll<HTMLElement>('.hero-slide'));

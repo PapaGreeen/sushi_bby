@@ -25,7 +25,7 @@ import { siteConfig } from '../config';
       <div class="info-block ">
         <h2>Address</h2>
         <address>
-            <a href="https://maps.apple.com/?q=1832+East+2nd+Street+Scotch+Plains+NJ+07676">
+            <a href="https://maps.app.goo.gl/44ThZV9dpDyexThz8">
               {siteConfig.address}
             </a><br />
           <!-- Add neighborhood or cross-street if helpful -->
@@ -43,7 +43,11 @@ import { siteConfig } from '../config';
           ))}
         </ul>
         <p class="hours-note">
-          Hours may vary on holidays — follow us on social or call ahead to confirm.
+          Hours may vary on holidays — follow us on 
+                <a href={siteConfig.instagram} class="footer-instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                  Instagram
+                </a> 
+          or call ahead to confirm.
         </p>
       </div>
 
@@ -56,12 +60,7 @@ import { siteConfig } from '../config';
       <div class="info-block ">
         <h2>Getting Here</h2>
         <p>
-          <strong>Parking:</strong> Street parking available on Lorem and Ipsum
-          Streets. Paid lot one block north on Dolor Ave.
-        </p>
-        <p>
-          <strong>Transit:</strong> Nearest stop is Lorem Station, two blocks
-          west. Bus lines 00 and 00X stop directly in front.
+          <strong>Parking:</strong> Parking lot and street parking available across from our location.
         </p>
       </div>
     </div>
