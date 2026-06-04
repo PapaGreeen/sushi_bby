@@ -4,7 +4,7 @@ import { siteConfig } from '../config';
 import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
 import bar1Image from '../assets/bar1.jpg';
 import barImageAI from '../assets/placeholder/barAI.png';
-import sushiImage from '../assets/placeholder/Sushi-placeholder.avif';
+import sushiImage from '../assets/placeholder/nigiri-ai.png';
 import carvingImage from '../assets/Instagram/tuna-carving.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -130,9 +130,22 @@ const offerings = [
 <style>
   .cta-band {
     background: var(--color-bg);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(196, 168, 130, 0.18);
     padding: 100px var(--pad-x);
     text-align: center;
+    position: relative;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--color-neon-teal) 30%, var(--color-neon-teal) 70%, transparent);
+    opacity: 0.9;
   }
 
   .cta-band-heading {

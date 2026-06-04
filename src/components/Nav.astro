@@ -20,7 +20,10 @@ const isActive = (href: string) => {
   <ul class="nav-links" id="nav-links">
     {siteConfig.nav.map((link) => (
       <li>
-        <a href={base + link.href} class={isActive(link.href) ? 'active' : ''}>
+        <a
+          href={base + link.href}
+          class={[isActive(link.href) ? 'active' : '', link.href === '/reservations' ? 'nav-cta' : ''].filter(Boolean).join(' ')}
+        >
           {link.label}
         </a>
       </li>

@@ -157,10 +157,23 @@ const sections = [
     align-items: center;
     gap: 7rem;
     padding: 5rem var(--pad-x);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(196, 168, 130, 0.18);
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
+  }
+
+  .zz-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--color-neon-teal) 30%, var(--color-neon-teal) 70%, transparent);
+    opacity: 0.9;
   }
 
   .zz-section.zz-reversed {
