@@ -2,12 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 
 import sushiImg       from '../assets/placeholder/Sushi-placeholder.avif';
+import sushiImg2      from '../assets/placeholder/nigiri-ai.png';
 import barCenteredImg from '../assets/placeholder/bar-centered-ai.png';
 import barAIImg       from '../assets/placeholder/barAI.png';
 import carvingImg     from '../assets/Instagram/tuna-carving.jpg';
 import carving2Img    from '../assets/Instagram/tuna-carving2.jpg';
 import carving3Img    from '../assets/Instagram/tuna-carving3.jpg';
-import event1Img      from '../assets/Instagram/private-event1.jpg';
 import event2Img      from '../assets/Instagram/private-event2.jpg';
 import bar1Img        from '../assets/bar1.jpg';
 import bar2Img        from '../assets/bar2.jpg';
@@ -19,8 +19,8 @@ const sections = [
     slug: "omakase",
     description: "A 13 course experience. No menu. Trust the chef.",
     images: [
+      { src: sushiImg2.src, alt: "Nigiri" },
       { src: sushiImg.src,       alt: "Omakase experience at Sushi BBY" },
-      { src: barCenteredImg.src, alt: "Sushi BBY bar" },
       { src: barAIImg.src,       alt: "Sushi BBY bar interior" },
     ],
   },
@@ -32,7 +32,6 @@ const sections = [
       { src: carving2Img.src,  alt: "Tuna carving tableside" },
       { src: carvingImg.src, alt: "Tuna carving" },
       { src: carving3Img.src, alt: "Tuna carving ceremony" },
-      { src: event1Img.src,   alt: "Private event at Sushi BBY" },
       { src: event2Img.src,   alt: "Private dining" },
     ],
   },
