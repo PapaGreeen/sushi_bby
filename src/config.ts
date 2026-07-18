@@ -12,8 +12,7 @@ export const siteConfig = {
   phone: "(555) 000-0000",
   email: "contact@sushi-bby-omakase.com",
   hours: [
-    { day: "Monday – Friday", time: "11am – 9pm" },
-    { day: "Saturday", time: "10am – 10pm" },
-    { day: "Sunday", time: "12pm – 8pm" },
+    { day: "Sunday – Thursday", time: "5:30am – 8:30pm" },
+    { day: "Friday - Saturday", time: "5:30pm – 10pm" },
   ],
 };
