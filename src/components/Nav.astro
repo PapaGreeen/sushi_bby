@@ -10,12 +10,10 @@ const isActive = (href: string) => {
 ---
 
 <nav class="site-nav">
-  <div class="brand-group">
-    <a href={base + '/'}>
-      <img class="nav-logo" src={base + '/favicon.svg'} alt="" width="100" height="100" />
-    </a>
-    <a href={base + '/'} class="brand">{siteConfig.name}</a>
-  </div>
+  <a href={base + '/'} class="brand-group">
+    <img class="nav-logo" src={base + '/favicon.svg'} alt="" width="100" height="100" />
+    <span class="brand">{siteConfig.name}</span>
+  </a>
 
   <ul class="nav-links" id="nav-links">
     {siteConfig.nav.map((link) => (
@@ -41,10 +39,18 @@ const isActive = (href: string) => {
   const hamburger = document.getElementById('nav-hamburger') as HTMLButtonElement;
   const links     = document.getElementById('nav-links') as HTMLUListElement;
 
+  // Below 1060px the collapsed menu is visually hidden but would otherwise stay
+  // in the tab order; above it the links are always visible and must never be inert.
+  const collapsible = window.matchMedia('(max-width: 1060px)');
+  const syncInert = () => {
+    links.toggleAttribute('inert', collapsible.matches && !links.classList.contains('nav-open'));
+  };
+
   hamburger?.addEventListener('click', () => {
     const open = links.classList.toggle('nav-open');
     hamburger.classList.toggle('is-open', open);
     hamburger.setAttribute('aria-expanded', String(open));
+    syncInert();
   });
 
   links?.querySelectorAll('a').forEach(a => {
@@ -52,6 +58,7 @@ const isActive = (href: string) => {
       links.classList.remove('nav-open');
       hamburger.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
+      syncInert();
     });
   });
 
@@ -60,8 +67,12 @@ const isActive = (href: string) => {
       links.classList.remove('nav-open');
       hamburger.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
+      syncInert();
     }
   });
+
+  collapsible.addEventListener('change', syncInert);
+  syncInert();
 
   const nav = document.querySelector('.site-nav') as HTMLElement;
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);

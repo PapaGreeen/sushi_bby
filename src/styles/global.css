@@ -184,6 +184,9 @@ nav.site-nav {
     align-items: center;
     gap: 0.5rem;
     flex-shrink: 0;
+    text-decoration: none;
+
+    &:hover { text-decoration: none; }
   }
 
   & .nav-logo { height: 36px; width: auto; filter: invert(1); }
@@ -278,13 +281,16 @@ nav.site-nav {
     opacity: 0;
     transform: translateY(-6px);
     pointer-events: none;
-    transition: max-height 0.35s ease, opacity 0.22s ease, transform 0.22s ease;
+    visibility: hidden;
+    transition: max-height 0.35s ease, opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.35s;
 
     &.nav-open {
       max-height: 500px;
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
+      visibility: visible;
+      transition: max-height 0.35s ease, opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
     }
 
     & li { width: 100%; }
