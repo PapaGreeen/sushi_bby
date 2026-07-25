@@ -12,7 +12,7 @@ export const siteConfig = {
   phone: "(908) 325-1577",
   email: "sushibbynj@gmail.com",
   hours: [
-    { day: "Sunday – Thursday", time: "5:30pm, 7:00pm, and 8:30pm" },
+    { day: "Sunday – Thursday", time: "5:30pm · 7:00pm · 8:30pm" },
     { day: "Friday - Saturday", time: "5:30 pm · 7:00 pm · 8:30 pm · 10:00 pm" },
   ],
 };
