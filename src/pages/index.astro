@@ -16,7 +16,7 @@ const restaurantSchema = {
   '@type': 'Restaurant',
   name: siteConfig.name,
   url: new URL('/', Astro.site).href,
-  image: new URL('/og-image.jpg', Astro.site).href,
+  image: new URL('/logo.png', Astro.site).href,
   telephone: siteConfig.phoneE164,
   email: siteConfig.email,
   servesCuisine: ['Japanese', 'Sushi', 'Omakase'],
