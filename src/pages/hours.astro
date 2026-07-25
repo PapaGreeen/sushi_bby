@@ -34,7 +34,19 @@ import { siteConfig } from '../config';
       </div>
 
       <div class="info-block ">
-        <h2>Hours</h2>
+        <h2>Open</h2>
+        <ul class="hours-list">
+          {siteConfig.businessHours.map((entry) => (
+            <li>
+              <span>{entry.day}</span>
+              <span>{entry.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="info-block ">
+        <h2>Seatings</h2>
         <ul class="hours-list">
           {siteConfig.hours.map((entry) => (
             <li>

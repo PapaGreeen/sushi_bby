@@ -9,6 +9,33 @@ import carvingImage from '../assets/Instagram/private-event1.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+// schema.org Restaurant structured data. Every value is pulled from config.ts
+// or derived from `site`, so it cannot drift from what the pages display.
+const restaurantSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: siteConfig.name,
+  url: new URL('/', Astro.site).href,
+  image: new URL('/og-image.jpg', Astro.site).href,
+  telephone: siteConfig.phoneE164,
+  email: siteConfig.email,
+  servesCuisine: ['Japanese', 'Sushi', 'Omakase'],
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: siteConfig.addressParts.street,
+    addressLocality: siteConfig.addressParts.locality,
+    addressRegion: siteConfig.addressParts.region,
+    postalCode: siteConfig.addressParts.postalCode,
+    addressCountry: siteConfig.addressParts.country,
+  },
+  openingHours: siteConfig.businessHours.map((entry) => entry.schema),
+  sameAs: [siteConfig.instagram],
+};
+
+// Escape `<` so the payload can never terminate the script element early.
+const restaurantSchemaJson = JSON.stringify(restaurantSchema).replace(/</g, '\\u003c');
+
 const slides = [
   { src: barShot1.src, alt: "Sushi BBY bar 2" }
 ];
@@ -40,6 +67,8 @@ const offerings = [
 ---
 
 <Layout description="Omakase, tuna carvings, and private events at Sushi BBY.">
+  <script type="application/ld+json" slot="head" is:inline set:html={restaurantSchemaJson} />
+
   <!-- Hero -->
   <section class="hero">
     {slides.map((slide, i) => (
@@ -100,7 +129,7 @@ const offerings = [
             </div>
             <div class="offering-card-overlay" aria-hidden="true"></div>
             <div class="offering-card-body">
-              <h3>{item.title}</h3>
+              <h2>{item.title}</h2>
               <p>{item.description}</p>
             </div>
           </a>
