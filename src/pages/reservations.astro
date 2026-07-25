@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ResyButton from '../components/ResyButton.astro';
 import { siteConfig } from '../config';
 ---
 
@@ -16,6 +17,8 @@ import { siteConfig } from '../config';
         </p>
         <p>We are BYOB.</p>
       </div>
+
+      <ResyButton />
 
       <div class="res-seating anim-fade-up">
         <h2>Seatings</h2>
@@ -59,7 +62,7 @@ import { siteConfig } from '../config';
       <div class="res-block anim-fade-up">
         <h2>Reservations</h2>
         <p>
-          Book through <strong>Resy</strong>.
+          Book through <a href="https://resy.com/cities/scotch-plains-nj-nj/venues/sushi-bby-omakase"><strong>Resy</strong></a>.
           For group inquiries or questions, reach us at{' '}
           <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
         </p>

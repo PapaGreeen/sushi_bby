@@ -1,0 +1,52 @@
+---
+// Resy booking widget.
+//
+// The venue ID and API key below are Resy's public client-side embed values —
+// they ship in the HTML of every restaurant that embeds this widget and are not
+// server credentials. Do not treat them as secrets.
+//
+// NOTE: uses a fixed element ID from Resy's snippet, so use this component at
+// most once per page.
+
+interface Props {
+  /** Visible link text. Also the accessible name if the widget script fails. */
+  label?: string;
+}
+
+const {
+  label = 'Book your Sushi BBY Omakase reservation on Resy',
+} = Astro.props;
+
+const RESY_URL = 'https://resy.com/cities/scotch-plains-nj-nj/venues/sushi-bby-omakase';
+const buttonId = 'resyButton-dgPPt8-Y3IVxp1vEbHxN3';
+const resyConfig = JSON.stringify({
+  venueId: 98800,
+  apiKey: 'l9i961j94v7gZiDQQjC5oEPOxjtsAJJd',
+  replace: true,
+});
+---
+
+<div class="resy-button">
+  <a href={RESY_URL} id={buttonId}>{label}</a>
+</div>
+
+<script is:inline defer src="https://widgets.resy.com/embed.js"></script>
+<script define:vars={{ buttonId, resyConfig }}>
+  // embed.js is deferred, so it has executed by the time DOMContentLoaded fires.
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById(buttonId);
+    if (el && window.resyWidget) {
+      window.resyWidget.addButton(el, JSON.parse(resyConfig));
+    }
+  });
+</script>
+
+<style>
+  /* Centers the link, and keeps it aligned when used as a flex item
+     alongside the hero's fixed-height .btn. */
+  .resy-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

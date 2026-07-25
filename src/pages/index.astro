@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ResyButton from '../components/ResyButton.astro';
 import { siteConfig } from '../config';
 import barCenteredAiImage from '../assets/placeholder/bar-centered-ai.png';
 import bar1Image from '../assets/restaurant.jpeg';
@@ -58,6 +59,7 @@ const offerings = [
         built entirely around the day's catch. No menu. Trust the chef.
       </p>
       <div class="hero-actions">
+        <ResyButton />
         <div class="btn">
           <a href={base + '/reservations'} class="btn-primary">Reservations</a>
           <span></span>
