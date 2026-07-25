@@ -5,10 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with the real production domain before indexing.
-  // Canonical tags, OG URLs, robots.txt and the sitemap are all derived from
-  // this value — changing it here updates every one of them.
-  site: 'https://sushi-bby.vercel.app',
+  site: 'https://www.sushi-bby-omakase.com',
   integrations: [
     sitemap({
       // Emit URLs without a trailing slash, matching the canonical tags in
