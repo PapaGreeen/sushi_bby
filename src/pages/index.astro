@@ -36,11 +36,6 @@ const restaurantSchema = {
 // Escape `<` so the payload can never terminate the script element early.
 const restaurantSchemaJson = JSON.stringify(restaurantSchema).replace(/</g, '\\u003c');
 
-const slides = [
-  { src: barShot1.src, alt: "Sushi BBY bar 2" }
-];
-
-
 const offerings = [
   {
     title: "Omakase",
@@ -69,13 +64,13 @@ const offerings = [
 <Layout description="Omakase, tuna carvings, and private events at Sushi BBY.">
   <script type="application/ld+json" slot="head" is:inline set:html={restaurantSchemaJson} />
 
-  <!-- Hero -->
+  <!-- Hero — a single static image by design. There is no slideshow, so it
+       carries no pause control and no tablist; those were removed rather than
+       left to describe a widget that does not exist. -->
   <section class="hero">
-    {slides.map((slide, i) => (
-      <div class={`hero-slide${i === 0 ? ' active' : ''}`}>
-        <img src={slide.src} alt={slide.alt} />
-      </div>
-    ))}
+    <div class="hero-slide active">
+      <img src={barShot1.src} alt="The sushi bar at Sushi BBY" />
+    </div>
 
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -94,28 +89,6 @@ const offerings = [
       </div>
     </div>
 
-    <div class="hero-controls">
-      <button class="hero-pause" aria-label="Pause slideshow" id="hero-pause">
-        <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <rect x="3" y="2" width="3.5" height="12" rx="1"/>
-          <rect x="9.5" y="2" width="3.5" height="12" rx="1"/>
-        </svg>
-        <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <polygon points="3,1 13,8 3,15"/>
-        </svg>
-      </button>
-      <div class="hero-dots" role="tablist" aria-label="Slideshow navigation">
-        {slides.map((_, i) => (
-          <button
-            class={`hero-dot${i === 0 ? ' active' : ''}`}
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
-            aria-label={`Slide ${i + 1}`}
-            data-slide={String(i)}
-          ></button>
-        ))}
-      </div>
-    </div>
   </section>
 
   <!-- Signature Offerings -->
@@ -201,36 +174,3 @@ const offerings = [
   }
 </style>
 
-<script>
-  const slides = Array.from(document.querySelectorAll<HTMLElement>('.hero-slide'));
-  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.hero-dot'));
-  const pauseBtn = document.getElementById('hero-pause') as HTMLButtonElement | null;
-
-  let current = 0;
-  let paused = false;
-
-  function goTo(index: number) {
-    slides[current].classList.remove('active');
-    dots[current]?.classList.remove('active');
-    dots[current]?.setAttribute('aria-selected', 'false');
-    current = ((index % slides.length) + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current]?.classList.add('active');
-    dots[current]?.setAttribute('aria-selected', 'true');
-  }
-
-  if (slides.length > 1) {
-    setInterval(() => { if (!paused) goTo(current + 1); }, 6000);
-  }
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => goTo(i));
-  });
-
-  pauseBtn?.addEventListener('click', () => {
-    paused = !paused;
-    pauseBtn.classList.toggle('is-paused', paused);
-    pauseBtn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
-  });
-
-</script>
