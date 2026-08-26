@@ -15,7 +15,7 @@ import { siteConfig } from '../config';
           raw fish and rice — there are no vegan substitutions, riceless options,
           or fish-free alternatives.
         </p>
-        <p>We are BYOB.</p>
+        <p class="res-byob">We are BYOB.</p>
       </div>
 
       <ResyButton />
@@ -115,6 +115,12 @@ import { siteConfig } from '../config';
   .res-note {
     margin-top: 0.5rem;
     font-size: 0.875rem;
+  }
+
+  .res-simple-inner p.res-byob {
+    color: var(--color-neon-teal);
+    font-size: 1.15rem;
+    font-weight: 700;
   }
 
   .res-simple-inner a {
